@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div>
+            {% if user.is_authenticated %}
+                Привіт <strong>{{ user.username }}</strong>.
+            {% else %}
+                Для подальшої роботи треба увійти у свій обліковий запис.
+            {% endif %}
+        </div>
+        <hr>
+        {% block body %}
+        {% endblock %}
+{% endblock %}
+
+
