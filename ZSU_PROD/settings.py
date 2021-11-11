@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'user',
+    'mainapp',  #  апликация которая запускает REACT
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     "crispy_bootstrap5",
+    'rest_framework', # апликация REST API
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'ZSU_PROD.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [(BASE_DIR / 'templates' ), (BASE_DIR / 'zsu-prod-ui/build') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,7 +77,7 @@ TEMPLATES = [
 ]
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+   ( BASE_DIR / "static"),    # Добавлено для 
 ]
 
 WSGI_APPLICATION = 'ZSU_PROD.wsgi.application'
@@ -130,6 +132,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static-ui' # место где будут собираться collectstatic
+STATICFILES_DIRS = ( (BASE_DIR / 'zsu-prod-ui/build/static'),)   # место откуда будут собираться collectstati
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
